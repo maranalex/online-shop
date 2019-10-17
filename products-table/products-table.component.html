@@ -1,0 +1,25 @@
+<div class="component-container">
+  <div class="navigation">
+    Products
+    <div class="buttons-on-right">
+      <button class="custom-button blue-button" >Cart</button>
+    </div>
+  </div>
+
+  <div class="sub-container">
+    <table>
+      <tr>
+        <th>Category</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let product of products">
+        <td>{{product.category}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}} RON</td>
+        <td class="details"><a [routerLink]="['/product', product.id]"> > </a></td>
+      </tr>
+    </table>
+  </div>
+</div>

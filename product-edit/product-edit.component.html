@@ -1,0 +1,42 @@
+<!--<div class="container-fluid" *ngIf="(product | async) as product">-->
+<div class="container-fluid" *ngIf="product">
+
+  <div class="row">
+    <div class="navigation">
+      <span>Product: {{product.name}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 text-right">
+      <span class="description-label mr-0 ml-100">Name |</span><br>
+      <span class="description-label mr-0 ml-100">Category |</span><br>
+      <span class="description-label mr-0 ml-100">Price |</span><br>
+    </div>
+    <div class="col-8">
+      <form #productForm="ngForm" class="col-8">
+      <input class="edit-field"
+             name="name"
+             id="newName"
+             [(ngModel)]="product.name"><br>
+      <input class="edit-field "
+             name="category"
+             id="newCategory"
+             [(ngModel)]="product.category"><br>
+      <input class="edit-field "
+             name="id"
+             id="newPrice"
+             [(ngModel)]="product.price"><br>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <textarea class="form-control details-area" rows="7"
+              name="description"
+              id="newDescription"
+              [(ngModel)]="product.description"></textarea>
+  </div>
+  <div class="row buttons-on-right" style="margin-right: 0px">
+    <button class="custom-button white-button">CANCEL</button>
+    <button class="custom-button blue-button" (click)="saveChanges()">SAVE</button>
+  </div>
+</div>

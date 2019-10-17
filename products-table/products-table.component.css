@@ -1,0 +1,26 @@
+table{
+  border-style: groove;
+  border-width: 8px;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 20px;
+}
+th{
+  font-weight: bolder;
+  text-align: left;
+}
+th, td, .details{
+  padding: 8px;
+  height: 45px;
+  border-style: groove;
+  border-width: 6px;
+  border-color: rgba(22, 22, 22, 0.65);
+}
+.details{
+  font-family:Consolas;
+  text-align: center;
+  font-size: 60px;
+  color: deepskyblue;
+}
+
+

@@ -1,0 +1,10 @@
+.choice-btn{
+  width: 100%;
+  border-radius: 0;
+  outline: none;
+
+}
+.choice-btn:focus{
+  outline: none;
+  -webkit-box-shadow:none;
+}

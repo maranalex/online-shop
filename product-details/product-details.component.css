@@ -1,0 +1,16 @@
+.sub-container{
+  font-size: 30px;
+  display: inline-block;
+}
+
+.product-image{
+  position: relative;
+  float:right;
+  margin-right: 30px;
+}
+
+.product-image img{
+  height: 250px;
+  width: 250px;
+}
+
