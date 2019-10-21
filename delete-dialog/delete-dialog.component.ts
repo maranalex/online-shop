@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -7,6 +8,17 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./delete-dialog.component.css']
 })
 export class DeleteDialogComponent implements OnInit {
+  @Output() deleteRequest: EventEmitter<void> = new EventEmitter();
+
+  approveAction() {
+    this.deleteRequest.emit();
+    this.activeModal.close();
+  }
+
+  closeDialog() {
+    this.activeModal.close();
+  }
+
 
   constructor(public activeModal: NgbActiveModal) {
   }

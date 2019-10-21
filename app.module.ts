@@ -10,6 +10,11 @@ import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {LoginComponent} from './login/login.component';
+import { StoreModule } from '@ngrx/store';
+import {productReducer} from '../store/reducers/product.reducer';
+import {ProductEffects} from '../store/effects/product.effects';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -18,6 +23,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ProductDetailsComponent,
     ProductEditComponent,
     DeleteDialogComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    StoreModule.forRoot({product: productReducer}),
+    EffectsModule.forRoot([ProductEffects])
   ],
   entryComponents: [
     DeleteDialogComponent

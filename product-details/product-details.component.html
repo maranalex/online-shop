@@ -1,11 +1,10 @@
-
-<div class="component-container"  *ngIf="(product | async) as product">
+<div class="component-container"  *ngIf="product">
   <div class="navigation">
     <span>Product: {{product.name}}</span>
     <div class="buttons-on-right">
       <button class="custom-button green-button">+</button>
       <button class="custom-button blue-button" [routerLink]="['/edit', product.id]">EDIT</button>
-      <button class="custom-button red-button" (click)="deleteProduct()">DELETE</button>
+      <button class="custom-button red-button" (click)="openDialog()">DELETE</button>
     </div>
   </div>
   <div class="sub-container"

@@ -3,7 +3,8 @@ import {Input} from '@angular/core';
 import {Product} from '../product';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ProductService} from '../product.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -14,18 +15,29 @@ export class ProductEditComponent implements OnInit {
   product: Product;
   prId: number;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private http: HttpClient,
+              private route: ActivatedRoute,
+              private toHP: Router,
+              private productService: ProductService) {
     this.route.params.subscribe(params => {
-      console.log(params);
-      this.http.get<any>('http://localhost:3000/products/' + params.id).subscribe(product => this.product = product);
+      this.productService.getProduct(params.id).subscribe(data => this.product = data);
     });
   }
 
   private saveChanges() {
-    console.log(this.product);
-    this.http.put<Product>('http://localhost:3000/products/' + this.product.id, this.product).subscribe();
-    window.alert('Changes saved');
+    this.productService.putProduct(this.product).subscribe(() => this.productService.toHomePage());
   }
+
+  private cancelAction() {
+    this.productService.toHomePage();
+  }
+
+  private isValid(): boolean {
+    if (this.product.name.length === 0) {
+      return true;
+    }
+    return false;
+      }
 
   ngOnInit() {
   }

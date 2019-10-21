@@ -36,7 +36,7 @@
               [(ngModel)]="product.description"></textarea>
   </div>
   <div class="row buttons-on-right" style="margin-right: 0px">
-    <button class="custom-button white-button">CANCEL</button>
-    <button class="custom-button blue-button" (click)="saveChanges()">SAVE</button>
+    <button class="custom-button white-button" (click)="cancelAction()">CANCEL</button>
+    <button class="custom-button blue-button" (click)="saveChanges()" [disabled]="isValid()">SAVE</button>
   </div>
 </div>

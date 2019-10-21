@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Product } from '../product';
-import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {Product} from '../product';
+import {IProduct} from '../models/clases';
+import {ProductService} from '../product.service';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {AppState} from '../app.state';
+import {GetProducts} from '../../store/actions/product.actions';
 
 @Component({
   selector: 'app-products-table',
@@ -8,15 +13,14 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./products-table.component.css']
 })
 export class ProductsTableComponent implements OnInit {
+  products: Observable<IProduct[]>;
 
-  constructor(private http: HttpClient) {
+  constructor(private store: Store<AppState>,
+              private productService: ProductService) {
   }
 
-  products: Product[];
-
   ngOnInit() {
-    this.http.get<any>('http://localhost:3000/products').subscribe(data => {
-      this.products = data;
-    });
+    this.store.dispatch(new GetProducts());
+    this.products = this.store.select(state => state.product);
   }
 }

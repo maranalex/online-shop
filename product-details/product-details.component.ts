@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Input} from '@angular/core';
 import {Product} from '../product';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subscription} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ProductService} from '../product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,25 +12,24 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  product: Observable<Product>;
-  prId: number;
+  product: Product;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private dialog: NgbModal) {
+
+  constructor(private route: ActivatedRoute,
+              private dialog: NgbModal,
+              private productService: ProductService) {
     this.route.params.subscribe(params => {
-      console.log(params);
-      this.product = this.http.get<any>('http://localhost:3000/products/' + params.id);
-      this.prId = params.id;
+      productService.getProduct(params.id).subscribe(data => this.product = data);
     });
   }
 
   ngOnInit() {
-    this.product.subscribe();
+    this.route.params.subscribe(params => params);
   }
 
-  private deleteProduct() {
-    this.dialog.open(DeleteDialogComponent);
-
-  //  this.http.delete('http://localhost:3000/products/' + this.prId).subscribe();
-
+  private openDialog() {
+    const ref = this.dialog.open(DeleteDialogComponent);
+    ref.componentInstance.deleteRequest.subscribe(() => this.productService.deleteProduct(this.product.id).subscribe(() =>
+      this.productService.toHomePage()));
   }
 }

@@ -1,0 +1,16 @@
+<div class="container h-100 d-flex justify-content-center">
+  <div class="login my-auto">
+      <h2 class="text-muted signIn">Sign In</h2>
+      <hr class="my-underline"/>
+    <form #logInForm="ngForm">
+        <div class="inputs">
+          <h2 class="text-muted signIn">User Name</h2>
+          <input class="my-input" name="username" [(ngModel)]="username">
+          <h2 class="text-muted signIn">Password</h2>
+          <input type="password" class="my-input" name="password" [(ngModel)]="password">
+          <button class="btn btn-primary my-input" (click)="login()"><h2 class="mt-0">LOG IN</h2></button>
+        </div>
+    </form>
+
+      </div>
+</div>

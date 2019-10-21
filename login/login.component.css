@@ -1,0 +1,35 @@
+.login{
+  width: 500px;
+  height: 405px;
+
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(93, 93, 93, 0.75);
+}
+.signIn{
+  margin-left: 18px;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+.my-underline{
+  overflow: visible;
+  width: 93%;
+  height: 4px;
+  background-color: rgba(155, 208, 255, 0.36);
+  border:0;
+  margin-top: 0;
+}.inputs *{
+  display: block;
+   margin: 18px 18px 0;
+ }
+ .inputs input{
+   padding: 5px;
+   font-size: 1.5em;
+ }
+ .my-input{
+   width: 93%;
+   height: 50px;
+ }
+
+
+

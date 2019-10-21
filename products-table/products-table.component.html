@@ -1,4 +1,4 @@
-<div class="component-container">
+<div class="component-container" *ngIf="products">
   <div class="navigation">
     Products
     <div class="buttons-on-right">
@@ -14,7 +14,7 @@
         <th>Price</th>
         <th></th>
       </tr>
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of products | async">
         <td>{{product.category}}</td>
         <td>{{product.name}}</td>
         <td>{{product.price}} RON</td>
