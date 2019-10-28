@@ -1,10 +1,8 @@
-import {Component, OnInit, Output} from '@angular/core';
-import {Input} from '@angular/core';
-import {Product} from '../product';
-import {Observable} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../product.service';
+import {IProduct} from '../models/clases';
 
 @Component({
   selector: 'app-product-edit',
@@ -12,7 +10,7 @@ import {ProductService} from '../product.service';
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
-  product: Product;
+  product: IProduct;
   prId: number;
 
   constructor(private http: HttpClient,
@@ -25,7 +23,7 @@ export class ProductEditComponent implements OnInit {
   }
 
   private saveChanges() {
-    this.productService.putProduct(this.product).subscribe(() => this.productService.toHomePage());
+    // this.productService.putProduct(this.product).subscribe(() => this.productService.toHomePage());
   }
 
   private cancelAction() {

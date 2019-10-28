@@ -1,4 +1,4 @@
-<div class="component-container"  *ngIf="product">
+<div class="component-container"  *ngIf="product$ | async as product">
   <div class="navigation">
     <span>Product: {{product.name}}</span>
     <div class="buttons-on-right">

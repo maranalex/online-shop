@@ -11,10 +11,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {LoginComponent} from './login/login.component';
-import { StoreModule } from '@ngrx/store';
+import {StoreModule} from '@ngrx/store';
 import {productReducer} from '../store/reducers/product.reducer';
 import {ProductEffects} from '../store/effects/product.effects';
 import {EffectsModule} from '@ngrx/effects';
+import {detailsReducer} from '../store/reducers/details.reducer';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,13 @@ import {EffectsModule} from '@ngrx/effects';
     FormsModule,
     BrowserAnimationsModule,
     NgbModule,
-    StoreModule.forRoot({product: productReducer}),
+    StoreModule.forRoot({
+      productList: productReducer,
+      productDetail: detailsReducer
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),
     EffectsModule.forRoot([ProductEffects])
   ],
   entryComponents: [

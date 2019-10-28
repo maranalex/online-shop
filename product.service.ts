@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Product} from './product';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
-import {catchError, map} from 'rxjs/operators';
+import {IProduct} from './models/clases';
 
 @Injectable({
   providedIn: 'root'
@@ -21,16 +21,16 @@ export class ProductService {
     return this.router.navigateByUrl('http://localhost:4200/products');
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:3000/products');
+  getProducts(): Observable<IProduct[]> {
+    return this.http.get<any>('http://localhost:3000/products');
   }
 
-  getProduct(id: number): Observable<Product> {
-    return this.http.get<Product>('http://localhost:3000/products/' + id);
+  getProduct(id: number): Observable<IProduct> {
+    return this.http.get<any>('http://localhost:3000/products/' + id);
   }
 
   putProduct(product: Product): Observable<any> {
-    return this.http.put<Product>('http://localhost:3000/products/' + product.id, product);
+    return this.http.put<IProduct>('http://localhost:3000/products/' + product.id, product);
   }
 
   deleteProduct(id: number) {

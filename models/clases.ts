@@ -30,6 +30,6 @@ export interface IProduct {
   name: string;
   category: string;
   price: number;
-  image: string;
-  description: string;
+  image?: string;
+  description?: string;
 }
